@@ -41,4 +41,25 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function notifiedBySlack(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'notify_slack' => true,
+        ]);
+    }
+
+    public function notifiedByFacebook(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'notify_facebook' => true,
+        ]);
+    }
+
+    public function notifiedBySMS(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'notify_sms' => true,
+        ]);
+    }
 }

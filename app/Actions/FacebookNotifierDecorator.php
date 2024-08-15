@@ -3,14 +3,16 @@
 namespace App\Actions;
 
 use App\Models\User;
+use App\Notifications\FacebookNotification;
 
-class FacebookNotifierDecorator implements NotifierInterface {
-    public function __construct(private NotifierInterface $notifier){}
+class FacebookNotifierDecorator implements NotifierInterface
+{
+    public function __construct(private NotifierInterface $notifier) {}
 
     public function send(User $user)
     {
         $this->notifier->send($user);
 
-        echo 'Notification Facebook envoyée à ' . $user->name;
+        $user->notify(new FacebookNotification);
     }
 }

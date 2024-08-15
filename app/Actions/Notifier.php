@@ -3,9 +3,12 @@
 namespace App\Actions;
 
 use App\Models\User;
+use App\Notifications\UserNotification;
 
-class Notifier implements NotifierInterface {
-    public function send(User $user) {
-        echo 'Notification Email envoyé à ' . $user->name;
+class Notifier implements NotifierInterface
+{
+    public function send(User $user)
+    {
+        $user->notify(new UserNotification);
     }
 }
