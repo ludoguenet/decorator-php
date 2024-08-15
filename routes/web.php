@@ -6,4 +6,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/notify/{user}', function (User $user) {
     (new NotifierService)->handle($user);
+
 });
