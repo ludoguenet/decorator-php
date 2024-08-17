@@ -14,9 +14,7 @@ it('sends email', function () {
 
     (new NotifierService)->handle($user);
 
-    Notification::assertSentTo(
-        [$user], UserNotification::class,
-    );
+    Notification::assertSentToTimes($user, UserNotification::class, 1);
 
     Notification::assertNotSentTo(
         [$user], FacebookNotification::class,
@@ -41,9 +39,7 @@ it('sends email, slack and facebook', function () {
 
     (new NotifierService)->handle($user);
 
-    Notification::assertSentTo(
-        [$user], UserNotification::class,
-    );
+    Notification::assertSentToTimes($user, UserNotification::class, 1);
 
     Notification::assertSentTo(
         [$user], FacebookNotification::class,
@@ -69,9 +65,7 @@ it('sends every notification', function () {
 
     (new NotifierService)->handle($user);
 
-    Notification::assertSentTo(
-        [$user], UserNotification::class,
-    );
+    Notification::assertSentToTimes($user, UserNotification::class, 1);
 
     Notification::assertSentTo(
         [$user], FacebookNotification::class,

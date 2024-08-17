@@ -45,6 +45,9 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'notify_slack' => 'boolean',
+            'notify_facebook' => 'boolean',
+            'notify_sms' => 'boolean',
         ];
     }
 }

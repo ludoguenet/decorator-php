@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
 use App\Models\User;
 use App\Notifications\FacebookNotification;
+use App\Notifications\SlackNotification;
 
-class FacebookNotifierDecorator implements NotifierInterface
+readonly class SlackDecoratorNotifier implements NotifierInterface
 {
     public function __construct(private NotifierInterface $notifier) {}
 
-    public function send(User $user)
+    public function send(User $user): void
     {
         $this->notifier->send($user);
 
-        $user->notify(new FacebookNotification);
+        $user->notify(new SlackNotification());
     }
 }
